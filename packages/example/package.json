@@ -1,0 +1,11 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "snippets"
+  },
+  "dependencies": {
+    "snippets": "file:../snippets"
+  }
+}

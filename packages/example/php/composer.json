@@ -1,0 +1,15 @@
+{
+    "name": "sarahdayan/php",
+    "require": {
+        "friendsofphp/php-cs-fixer": "^2.15"
+    },
+    "authors": [
+        {
+            "name": "Sarah Dayan",
+            "email": "sarah.dayan@algolia.com"
+        }
+    ],
+    "scripts": {
+        "lint": "php vendor/bin/php-cs-fixer fix --dry-run snippets"
+    }
+}
