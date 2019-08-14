@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import * as fs from 'fs'
+import { Writable } from 'stream'
 import path from 'path'
 import gs from 'glob-stream'
 import program from 'commander'
@@ -27,9 +28,9 @@ const outputFileName =
     ? program.file
     : configOutputFile
 
-let outputFile = fs.createWriteStream(
+let outputFile = program.file ? fs.createWriteStream(
   path.join(process.cwd(), outputFileName || configOutputFile)
-)
+) : new Writable()
 
 const languages = Object.assign(
   {},
