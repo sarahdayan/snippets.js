@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "make && snippets"
+    "generate": "make && snippets"
   },
   "dependencies": {
     "snippets": "file:../snippets"
