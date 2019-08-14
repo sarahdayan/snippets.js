@@ -1,5 +1,5 @@
 all:
-	js
+	make js && make php && make ruby
 
 js:
 	cd javascript && yarn lint
