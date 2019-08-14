@@ -1,5 +1,15 @@
 module.exports = {
   sourceDir: '**/snippets/**/*',
   ignore: ['**/node_modules/**'],
-  extensions: ['js', 'php', 'rb']
+  outputFile: 'all_snippets.txt',
+  languages: [
+    {
+      fileType: ['php'],
+      transform: code => code.replace('<?php', '')
+    },
+    {
+      fileType: ['cs'],
+      language: 'csharp'
+    }
+  ]
 }

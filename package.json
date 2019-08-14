@@ -2,7 +2,13 @@
   "name": "snippets",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "clean": "lerna clean"
+  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  }
 }

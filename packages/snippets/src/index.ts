@@ -2,30 +2,98 @@
 
 import * as fs from 'fs'
 import path from 'path'
-import glob from 'glob'
+import gs from 'glob-stream'
+import program from 'commander'
 
-import { SnippetFactory } from './interfaces/SnippetFactory'
-import * as SnippetFactories from './factories'
+import { createSnippet } from './createSnippet'
 
 const configPath = path.join(process.cwd(), 'snippets.config.js')
-const { sourceDir, ignore } = require(configPath)
+const {
+  sourceDir = './',
+  ignore = [],
+  outputFile: configOutputFile = 'snippets.txt',
+  languages: lngs
+} = require(configPath)
 const snippetsPath = path.join(process.cwd(), sourceDir)
 
-const languages: { [key: string]: SnippetFactory } = {
-  rb: SnippetFactories.createRubySnippet,
-  js: SnippetFactories.createJavaScriptSnippet,
-  php: SnippetFactories.createPhpSnippet
-}
+program
+  .option('-f, --file [file]', 'Write snippets to a file')
+  .option('-l, --log', 'Log snippets to the console')
+
+program.parse(process.argv)
+
+const outputFileName =
+  program.file && typeof program.file === 'string'
+    ? program.file
+    : configOutputFile
+
+let outputFile = fs.createWriteStream(
+  path.join(process.cwd(), outputFileName || configOutputFile)
+)
+
+const languages = Object.assign(
+  {},
+  ...lngs.map(
+    ({
+      fileType,
+      language,
+      transform
+    }: {
+      fileType: string[],
+      language: string,
+      transform: (code: string) => string
+    }) =>
+      Object.assign(
+        {},
+        ...fileType.map((type: any) => ({
+          [type]: {
+            language,
+            transform
+          }
+        }))
+      )
+  )
+)
 
 const getSnippet = (filepath: string) => {
   const code = fs.readFileSync(filepath, 'utf8')
   const extension = filepath.split('.').slice(-1)[0]
+  const plugin: { fileType?: string[], language?: string, transform?: (code: string) => string } = languages[extension] || {}
+  const { language = extension, transform } = plugin
 
-  return languages[extension](filepath, code)
+  return createSnippet({
+    path: filepath,
+    code,
+    language,
+    transform
+  })
 }
 
-glob(snippetsPath, { ignore }, (err, files) => {
-  if (err) throw err
+const files = gs(snippetsPath, { ignore })
 
-  return files.map(filepath => getSnippet(filepath))
+files.on('data', ({ path: filepath }) => {
+  const { markdown } = getSnippet(filepath)
+  const output = `${markdown.trim()}\n`
+
+  if (program.file) {
+    outputFile.write(output, 'utf8')
+  }
+
+  if (program.log) {
+    console.log(output)
+  }
+})
+
+files.on('finish', () => {
+  outputFile.end()
+})
+
+outputFile.on('finish', () => {
+  if (program.file) {
+    console.log(`✨  Finished writing snippets to %s\n`, outputFileName)
+  }
+
+  if (program.log) {
+    console.log(`✨  Finished logging snippets to console\n`)
+  }
 })

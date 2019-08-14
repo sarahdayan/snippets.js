@@ -1,7 +1,5 @@
-import { Language } from '../types/Language';
-
 export interface Snippet {
-  language: Language,
+  language: string,
   path: string,
   code: string,
   markdown: string

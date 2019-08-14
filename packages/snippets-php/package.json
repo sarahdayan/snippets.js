@@ -1,5 +1,5 @@
 {
-  "name": "snippets",
+  "name": "snippets-php",
   "version": "0.0.1",
   "main": "dist/index.js",
   "bin": {
@@ -7,28 +7,19 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "jest",
     "watch": "tsc -w -p .",
     "build": "tsc"
+  },
+  "dependencies": {
+    "snippets": "file:../snippets"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
-    "@types/glob": "^7.1.1",
-    "@types/glob-stream": "^6.1.0",
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.9",
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
     "typescript": "^3.5.3"
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "commander": "^3.0.0",
-    "glob-stream": "^6.1.0",
-    "unindent": "^2.0.0"
-  }
+  ]
 }

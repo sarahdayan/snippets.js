@@ -1,10 +1,9 @@
-import { createSnippet } from '../factories/createSnippet'
-import { Language } from '../enums/Language'
+import { createSnippet } from '../createSnippet'
 
 let snippet = undefined
 
 const snippetOptions = {
-  language: Language.ANDROID,
+  language: 'java',
   path: 'path/to/snippet',
   code: 'System.out.println("Hello, World");'
 }
@@ -15,14 +14,8 @@ beforeEach(() => {
 
 describe('createSnippet', () => {
   describe('#language', () => {
-    test('returns the language ID', () => {
-      expect(snippet.language.id).toBe('android')
-    })
-    test('returns the language code', () => {
-      expect(snippet.language.code).toBe('java')
-    })
-    test('returns the language label', () => {
-      expect(snippet.language.label).toBe('Android')
+    test('returns the language', () => {
+      expect(snippet.language).toBe('java')
     })
   })
   describe('#path', () => {
@@ -47,7 +40,7 @@ System.out.println("Hello, World");
     })
     test('removes blank lines', () => {
       const { code } = createSnippet({
-        language: Language.PHP,
+        language: 'php',
         path: 'path/to/snippet',
         code: `
 <?php
@@ -59,12 +52,12 @@ echo "Hello, world!";`,
     })
     test('only retrieves code between slash comments', () => {
       const { code } = createSnippet({
-        language: Language.JAVASCRIPT,
+        language: 'javascript',
         path: 'path/to/snippet',
         code: `
 index.setSettings({ 'customRanking': ['desc(followers)'] }, (err, content) => {
   // snippets-start
-   if (err) throw err;
+  if (err) throw err;
 
   console.log(content);
   // snippets-end
@@ -77,7 +70,7 @@ console.log(content);`)
     })
     test('only retrieves code between hash comments', () => {
       const { code } = createSnippet({
-        language: Language.PYTHON,
+        language: 'python',
         path: 'path/to/snippet',
         code: `
 index.set_settings({'customRanking': ['desc(followers)']}, {
@@ -91,7 +84,7 @@ index.set_settings({'customRanking': ['desc(followers)']}, {
     })
     test('works with unspaced comments', () => {
       const { code } = createSnippet({
-        language: Language.PYTHON,
+        language: 'python',
         path: 'path/to/snippet',
         code: `
 index.set_settings({'customRanking': ['desc(followers)']}, {
