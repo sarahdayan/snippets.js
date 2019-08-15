@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "make",
-    "snippets": "node script",
-    "generate": "yarn lint && yarn snippets"
+    "generate": "yarn lint && node script",
+    "markdown": "yarn lint && node markdown"
   },
   "dependencies": {
     "snippets": "file:../snippets"
