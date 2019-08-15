@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "generate": "node script"
+    "lint": "make",
+    "snippets": "node script",
+    "generate": "yarn lint && yarn snippets"
   },
   "dependencies": {
     "snippets": "file:../snippets"

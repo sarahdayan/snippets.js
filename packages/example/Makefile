@@ -2,12 +2,12 @@ all:
 	make js && make php && make ruby
 
 js:
-	cd javascript && yarn lint
+	cd snippets/javascript && yarn --silent lint
 
 php:
-	cd php && composer lint
+	cd snippets/php && composer --quiet lint
 
 ruby:
-	cd ruby && rubocop
+	cd snippets/ruby && rubocop --format quiet
 
 .PHONY: php js ruby
