@@ -1,10 +1,7 @@
 {
   "name": "snippets",
   "version": "0.0.1",
-  "main": "./dist/stream.js",
-  "bin": {
-    "snippets": "dist/script.js"
-  },
+  "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest",
@@ -27,7 +24,6 @@
     "dist"
   ],
   "dependencies": {
-    "commander": "^3.0.0",
     "glob-stream": "^6.1.0",
     "unindent": "^2.0.0"
   }
