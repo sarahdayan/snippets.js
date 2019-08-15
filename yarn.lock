@@ -6264,6 +6264,7 @@ snapdragon@^0.8.1:
 "snippets@file:packages/snippets":
   version "0.0.1"
   dependencies:
+    commander "^3.0.0"
     glob-stream "^6.1.0"
     unindent "^2.0.0"
 

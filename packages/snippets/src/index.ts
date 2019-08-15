@@ -6,15 +6,11 @@ import path from 'path'
 import gs from 'glob-stream'
 import program from 'commander'
 
+import { sourceDir, ignore, languages } from './options'
 import { createSnippet } from './createSnippet'
 
 const configPath = path.join(process.cwd(), 'snippets.config.js')
-const {
-  sourceDir = './',
-  ignore = [],
-  outputFile: configOutputFile = 'snippets.txt',
-  languages: lngs
-} = require(configPath)
+const { outputFile: configOutputFile = 'snippets.txt' } = require(configPath)
 const snippetsPath = path.join(process.cwd(), sourceDir)
 
 program
@@ -32,9 +28,9 @@ let outputFile = program.file ? fs.createWriteStream(
   path.join(process.cwd(), outputFileName || configOutputFile)
 ) : new Writable()
 
-const languages = Object.assign(
+const langs = Object.assign(
   {},
-  ...lngs.map(
+  ...languages.map(
     ({
       fileType,
       language,
@@ -59,7 +55,7 @@ const languages = Object.assign(
 const getSnippet = (filepath: string) => {
   const code = fs.readFileSync(filepath, 'utf8')
   const extension = filepath.split('.').slice(-1)[0]
-  const plugin: { fileType?: string[], language?: string, transform?: (code: string) => string } = languages[extension] || {}
+  const plugin: { fileType?: string[], language?: string, transform?: (code: string) => string } = langs[extension] || {}
   const { language = extension, transform } = plugin
 
   return createSnippet({

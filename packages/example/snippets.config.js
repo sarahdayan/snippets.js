@@ -1,7 +1,6 @@
 module.exports = {
   sourceDir: '**/snippets/**/*',
   ignore: ['**/node_modules/**'],
-  outputFile: 'all_snippets.txt',
   languages: [
     {
       fileType: ['php'],

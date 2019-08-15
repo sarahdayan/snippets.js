@@ -1,9 +1,9 @@
 {
   "name": "snippets",
   "version": "0.0.1",
-  "main": "dist/index.js",
+  "main": "./dist/stream.js",
   "bin": {
-    "snippets": "dist/index.js"
+    "snippets": "dist/script.js"
   },
   "license": "MIT",
   "scripts": {
