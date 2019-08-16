@@ -1,8 +1,8 @@
 import * as fs from 'fs'
-import { createSnippet } from './createSnippet'
+import { createSnippet } from '../createSnippet'
 import { getLanguageOptions } from './languages'
 import { languages } from './options'
-import { LanguageConfig } from './interfaces/config/Language'
+import { LanguageConfig } from '../interfaces/LanguageConfig'
 
 const langs = getLanguageOptions(languages)
 

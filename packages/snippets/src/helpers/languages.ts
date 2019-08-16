@@ -1,4 +1,4 @@
-import { LanguageConfig } from './interfaces/config/Language'
+import { LanguageConfig } from '../interfaces/LanguageConfig'
 
 const getLanguageOptions = (languagesConfig: LanguageConfig[]) =>
   Object.assign(
@@ -6,7 +6,7 @@ const getLanguageOptions = (languagesConfig: LanguageConfig[]) =>
     ...languagesConfig.map(
       ({
         fileType = [],
-        language = '',
+        language,
         transform = code => code
       }) =>
         Object.assign(

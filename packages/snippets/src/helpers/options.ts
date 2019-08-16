@@ -1,5 +1,5 @@
 import path from 'path'
-import { LanguageConfig } from './interfaces/config/Language'
+import { LanguageConfig } from '../interfaces/LanguageConfig'
 
 const CONFIG_FILE = 'snippets.config.js'
 const SOURCE_DIR = './'

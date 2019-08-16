@@ -33,8 +33,7 @@ describe('createSnippet', () => {
       expect(code).toBe('SYSTEM.OUT.PRINTLN("HELLO, WORLD");')
     })
     test('returns the code in Markdown', () => {
-      expect(snippet.markdown).toBe(`
-\`\`\`java
+      expect(snippet.markdown).toBe(`\`\`\`java
 System.out.println("Hello, World");
 \`\`\``)
     })
@@ -54,8 +53,7 @@ echo "Hello, world!";`,
       const { code } = createSnippet({
         language: 'javascript',
         path: 'path/to/snippet',
-        code: `
-index.setSettings({ 'customRanking': ['desc(followers)'] }, (err, content) => {
+        code: `index.setSettings({ 'customRanking': ['desc(followers)'] }, (err, content) => {
   // snippets-start
   if (err) throw err;
 
@@ -72,8 +70,7 @@ console.log(content);`)
       const { code } = createSnippet({
         language: 'python',
         path: 'path/to/snippet',
-        code: `
-index.set_settings({'customRanking': ['desc(followers)']}, {
+        code: `index.set_settings({'customRanking': ['desc(followers)']}, {
     # snippets-start
     'forwardToReplicas': True
     # snippets-end

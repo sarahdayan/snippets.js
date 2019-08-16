@@ -1,5 +1,5 @@
 export interface LanguageConfig {
-  fileType?: string[]
+  fileType: string[]
   language?: string
   transform?: (code: string) => string
 }

@@ -18,8 +18,7 @@ const createSnippet: {
     language,
     path,
     code: transformedCode,
-    markdown: `
-\`\`\`${language}
+    markdown: `\`\`\`${language}
 ${transformedCode}
 \`\`\``
   }

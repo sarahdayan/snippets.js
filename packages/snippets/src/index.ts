@@ -3,8 +3,8 @@ import path from 'path'
 import gs from 'glob-stream'
 import { Transform } from 'stream'
 
-import { sourceDir, ignore } from './options'
-import { createSnippetFromPath } from './createSnippetFromPath'
+import { sourceDir, ignore } from './helpers/options'
+import { createSnippetFromPath } from './helpers/createSnippetFromPath'
 
 const transformFiles = (inStream: NodeJS.ReadableStream) => {
   const upperStream = new Transform({
