@@ -1,4 +1,4 @@
-# Snippets Demo<!-- omit in toc -->
+# Snippets Demos<!-- omit in toc -->
 
 This repository exposes demos for you to test Snippets and get inspiration to write your own scripts.
 
