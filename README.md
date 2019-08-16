@@ -163,13 +163,19 @@ module.exports = {
 
 ## API
 
+The library exposes two main modules: `snippets` and `createSnippet`.
+
 ### `snippets` <!-- omit in toc -->
+
+Type: `NodeJS.ReadableStream`
 
 The `snippets` stream is exposed by default to let you manipulate the received `Snippet` objects. It works along with the [configuration file](#configuration-file), finds and parses your snippets for you, and exposes them through a readable stream.
 
 You can use it to log objects to the console, write them to a file, store them in memory for later usage, anything.
 
 ### `createSnippet` <!-- omit in toc -->
+
+Type: `(options: { language, path?, code, transform? }) => Snippet`
 
 The `createSnippet` factory lets you generate `Snippet` objects from source input. This is what the library uses internally to generate snippets from your source files.
 
@@ -182,7 +188,7 @@ echo "Hello world!"`,
 })
 ```
 
-You can use `createSnippet` to create snippets manually, or to build your own snippet factories for specific languages.
+You can use `createSnippet` to create snippets manually as in the example above, or to build your own snippet factories for specific languages. If you're using TypeScript, you can implement the `SnippetFactory` interface.
 
 ```js
 const createPhpSnippet = code => createSnippet({
@@ -197,15 +203,13 @@ echo "Hello world!"`
 const phpSnippet = createPhpSnippet(code)
 ```
 
-If you're using TypeScript, you can implement the `SnippetFactory` interface.
-
 #### `options.language` <!-- omit in toc -->
 
 Type: `string`
 
 The language of a snippet.
 
-#### `options.path` <!-- omit in toc -->
+#### `options.path?` <!-- omit in toc -->
 
 Type: `string`
 
@@ -227,7 +231,7 @@ This is useful when you want to get rid of a piece of code that's necessary in t
 
 ### `Snippet` <!-- omit in toc -->
 
-A `Snippet` object contains all the information about a code snippet.
+A `Snippet` object contains all the information about a code snippet. This is what the library returns you when you're either using `createSnippet` manually, or listening for data on `snippets`.
 
 If you're using TypeScript, you can implement the `Snippet` interface.
 
@@ -237,7 +241,11 @@ Type: `string`
 
 Get the language of a snippet.
 
-#### `path` <!-- omit in toc -->
+```js
+phpSnippet.language // 'php'
+```
+
+#### `path?` <!-- omit in toc -->
 
 Type: `string`
 
@@ -245,17 +253,29 @@ Get the path of a snippet.
 
 This is the original path to the source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
+```js
+phpSnippet.path // undefined
+```
+
 #### `code` <!-- omit in toc -->
 
 Type: `string`
 
 Get the code of a snippet.
 
+```js
+phpSnippet.code // 'echo "Hello world!"'
+```
+
 #### `markdown` <!-- omit in toc -->
 
 Type: `string`
 
 Get the code of a snippet in Markdown format.
+
+```js
+phpSnippet.markdown // '```php\necho "Hello world!"\n```'
+```
 
 ## FAQ
 
