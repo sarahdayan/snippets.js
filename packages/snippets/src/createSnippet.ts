@@ -6,7 +6,7 @@ const commentRegex = /(?:#|\/\/) ?snippets-start((?:.*|\n)*?)(?:#|\/\/) ?snippet
 const createSnippet: {
   (options: {
     language: string,
-    path: string,
+    path?: string,
     code: string,
     transform?: (code: string) => string
   }): Snippet
