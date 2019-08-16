@@ -239,7 +239,7 @@ If you don't want to use streams, you can reimplement the iteration logic as you
 
 ### Can I see a demo? <!-- omit in toc -->
 
-Sure! This monorepo exposes a fully working example in `packages/example/`. Check out the code for inspiration, and follow the README to run the demo.
+Sure! This monorepo exposes a [fully working example](https://github.com/sarahdayan/snippets.js/tree/master/packages/example) in `packages/example/`. Check out the code for inspiration, and follow the README to run the demo.
 
 ## License
 
