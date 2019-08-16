@@ -9,8 +9,10 @@ const outputFile = fs.createWriteStream(path.join(process.cwd(), outputFileName)
 
 let snippetCounter = 0
 
-snippets.on('data', ({ markdown }) => {
-  outputFile.write(`${markdown}\n`)
+snippets.on('data', ({ language, path, markdown }) => {
+  const snippetName = path.split('/').slice(-1)[0].split('.')[0]
+
+  outputFile.write(`## ${snippetName} in ${language}\n\n${markdown}\n`)
   snippetCounter++
 })
 
