@@ -1,13 +1,12 @@
-# Snippets Demo
+# Snippets Demo<!-- omit in toc -->
 
 This repository exposes demos for you to test Snippets and get inspiration to write your own scripts.
 
 It's composed of three individual projects with source code to turn into snippets. Alongside, you have access to ready-made, runnable demos.
 
-- [Snippets Demo](#snippets-demo)
-  - [Project structure](#project-structure)
-  - [Install](#install)
-  - [Getting started](#getting-started)
+- [Project structure](#project-structure)
+- [Install](#install)
+- [Getting started](#getting-started)
 
 ## Project structure
 

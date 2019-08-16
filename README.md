@@ -1,16 +1,15 @@
-# Snippets.js
+# Snippets.js<!-- omit in toc -->
 
 Snippets helps you extract code snippets from source files so you can use them as text in your own projects.
 
 It's particularly useful in documentation projects, where you need to showcase code snippets but can't either run or lint them to ensure they're correct. Snippets integrates in your workflow and returns a collection of parsed snippets.
 
-- [Snippets.js](#snippetsjs)
-  - [Install](#install)
-  - [Getting started](#getting-started)
-  - [Configuration file](#configuration-file)
-  - [API](#api)
-  - [FAQ](#faq)
-  - [License](#license)
+- [Install](#install)
+- [Getting started](#getting-started)
+- [Configuration file](#configuration-file)
+- [API](#api)
+- [FAQ](#faq)
+- [License](#license)
 
 ## Install
 
@@ -27,15 +26,15 @@ yarn add snippets.js
 Snippets iterates over your source files, generates snippet objects, and exposes them through a readable stream.
 
 ```js
-const snippets = require('snippets.js')
+const snippets = require("snippets.js");
 
-snippets.on('data', snippet => {
-  console.log(snippet)
-})
+snippets.on("data", snippet => {
+  console.log(snippet);
+});
 
-snippets.on('end', () => {
-  console.log('Finished parsing snippets!')
-})
+snippets.on("end", () => {
+  console.log("Finished parsing snippets!");
+});
 ```
 
 If you only need to parse a chunk of a longer snippet, you can add special comments to delimit the part you need.
@@ -88,8 +87,8 @@ The path where to find the source snippets. Supports glob patterns.
 
 ```js
 module.exports = {
-  sourceDir: 'path/to/snippets/**/*'
-}
+  sourceDir: "path/to/snippets/**/*"
+};
 ```
 
 ### `ignore`<!-- omit in toc -->
@@ -100,8 +99,8 @@ The paths to ignore. Supports glob patterns.
 
 ```js
 module.exports = {
-  ignore: ['node_modules']
-}
+  ignore: ["node_modules"]
+};
 ```
 
 ### `languages`<!-- omit in toc -->
@@ -114,17 +113,17 @@ A collection of rules to handle languages. This lets you apply specific treatmen
 module.exports = {
   languages: [
     {
-      fileType: ['rb', 'erb'],
-      language: 'ruby',
+      fileType: ["rb", "erb"],
+      language: "ruby",
       transform(code) {
-        return code.replace('# frozen_string_literal: true', '')
+        return code.replace("# frozen_string_literal: true", "");
       }
     },
     {
       // ...
     }
   ]
-}
+};
 ```
 
 #### `languages.fileType`<!-- omit in toc -->
@@ -137,10 +136,10 @@ The file type(s) on which to apply the rule (based on file extension).
 module.exports = {
   languages: [
     {
-      fileType: ['rb', 'erb']
+      fileType: ["rb", "erb"]
     }
   ]
-}
+};
 ```
 
 #### `languages.language`<!-- omit in toc -->
@@ -155,15 +154,15 @@ If not specified, defaults to the file extension.
 module.exports = {
   languages: [
     {
-      language: 'ruby'
+      language: "ruby"
     }
   ]
-}
+};
 ```
 
 #### `languages.transform`<!-- omit in toc -->
 
-Type:  `(code: string) => string`
+Type: `(code: string) => string`
 
 A transform function to apply on the code.
 
@@ -172,11 +171,11 @@ module.exports = {
   languages: [
     {
       transform(code) {
-        return code.replace('# frozen_string_literal: true', '')
+        return code.replace("# frozen_string_literal: true", "");
       }
     }
   ]
-}
+};
 ```
 
 ## API
@@ -199,26 +198,27 @@ The `createSnippet` factory lets you generate `Snippet` objects from source inpu
 
 ```js
 const phpSnippet = createSnippet({
-  language: 'php',
+  language: "php",
   code: `<?php
 echo "Hello world!"`,
-  transform: code => code.replace('<?php', '')
-})
+  transform: code => code.replace("<?php", "")
+});
 ```
 
 You can use `createSnippet` to create snippets manually as in the example above, or to build your own snippet factories for specific languages. If you're using TypeScript, you can implement the `SnippetFactory` interface.
 
 ```js
-const createPhpSnippet = code => createSnippet({
-  language: 'php',
-  code,
-  transform: code => code.replace('<?php', '')
-})
+const createPhpSnippet = code =>
+  createSnippet({
+    language: "php",
+    code,
+    transform: code => code.replace("<?php", "")
+  });
 
 const code = `<?php
-echo "Hello world!"`
+echo "Hello world!"`;
 
-const phpSnippet = createPhpSnippet(code)
+const phpSnippet = createPhpSnippet(code);
 ```
 
 #### `options.language`<!-- omit in toc -->
@@ -260,7 +260,7 @@ Type: `string`
 Get the language of a snippet.
 
 ```js
-phpSnippet.language // 'php'
+phpSnippet.language; // 'php'
 ```
 
 #### `path?`<!-- omit in toc -->
@@ -272,7 +272,7 @@ Get the path of a snippet.
 This is the original path to the source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
 ```js
-phpSnippet.path // undefined
+phpSnippet.path; // undefined
 ```
 
 #### `code`<!-- omit in toc -->
@@ -282,7 +282,7 @@ Type: `string`
 Get the code of a snippet.
 
 ```js
-phpSnippet.code // 'echo "Hello world!"'
+phpSnippet.code; // 'echo "Hello world!"'
 ```
 
 #### `markdown`<!-- omit in toc -->
@@ -291,9 +291,9 @@ Type: `string`
 
 Get the code of a snippet in Markdown format.
 
-```js
-phpSnippet.markdown // '```php\necho "Hello world!"\n```'
-```
+````js
+phpSnippet.markdown; // '```php\necho "Hello world!"\n```'
+````
 
 ## FAQ
 
