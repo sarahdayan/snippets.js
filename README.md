@@ -62,7 +62,9 @@ public class Factorial {
 
 A configuration can be defined via a `snippets.config.js` file, at the root of your project.
 
-### `sourceDir` (`string`) <!-- omit in toc -->
+### `sourceDir` <!-- omit in toc -->
+
+Type: `string`
 
 The path where to find the source snippets. Supports glob patterns.
 
@@ -72,7 +74,9 @@ module.exports = {
 }
 ```
 
-### `ignore` (`string[]`) <!-- omit in toc -->
+### `ignore` <!-- omit in toc -->
+
+Type: `string[]`
 
 The paths to ignore. Supports glob patterns.
 
@@ -82,7 +86,9 @@ module.exports = {
 }
 ```
 
-### `languages` (`{ fileType, language?, transform? }`) <!-- omit in toc -->
+### `languages` <!-- omit in toc -->
+
+Type: `{ fileType, language?, transform? }`
 
 A collection of rules to handle languages. This lets you apply specific treatment to each snippet based on file type.
 
@@ -103,7 +109,9 @@ module.exports = {
 }
 ```
 
-#### `languages.fileType` (`string[]`) <!-- omit in toc -->
+#### `languages.fileType` <!-- omit in toc -->
+
+Type: `string[]`
 
 The file type(s) on which to apply the rule (based on file extension).
 
@@ -117,7 +125,9 @@ module.exports = {
 }
 ```
 
-#### `languages.language` (`string`) <!-- omit in toc -->
+#### `languages.language` <!-- omit in toc -->
+
+Type: `string`
 
 The language slug to assign to the snippet. This is used as language for the Markdown fenced blocks.
 
@@ -133,7 +143,9 @@ module.exports = {
 }
 ```
 
-#### `languages.transform` (`(code: string) => string`) <!-- omit in toc -->
+#### `languages.transform` <!-- omit in toc -->
+
+Type:  `(code: string) => string`
 
 A transform function to apply on the code.
 
@@ -187,19 +199,27 @@ const phpSnippet = createPhpSnippet(code)
 
 If you're using TypeScript, you can implement the `SnippetFactory` interface.
 
-#### `options.language` (`string`) <!-- omit in toc -->
+#### `options.language` <!-- omit in toc -->
+
+Type: `string`
 
 The language of a snippet.
 
-#### `options.path` (`string`) <!-- omit in toc -->
+#### `options.path` <!-- omit in toc -->
+
+Type: `string`
 
 The path of a snippet's source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
-#### `options.code` (`string`) <!-- omit in toc -->
+#### `options.code` <!-- omit in toc -->
+
+Type: `string`
 
 The raw code of a snippet.
 
-#### `options.transform?` (`(code: string) => string`) <!-- omit in toc -->
+#### `options.transform?` <!-- omit in toc -->
+
+Type: `(code: string) => string`
 
 A function to transform the raw code before returning it.
 
@@ -211,21 +231,29 @@ A `Snippet` object contains all the information about a code snippet.
 
 If you're using TypeScript, you can implement the `Snippet` interface.
 
-#### `language` (`string`) <!-- omit in toc -->
+#### `language` <!-- omit in toc -->
+
+Type: `string`
 
 Get the language of a snippet.
 
-#### `path` (`string`) <!-- omit in toc -->
+#### `path` <!-- omit in toc -->
+
+Type: `string`
 
 Get the path of a snippet.
 
 This is the original path to the source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
-#### `code` (`string`) <!-- omit in toc -->
+#### `code` <!-- omit in toc -->
+
+Type: `string`
 
 Get the code of a snippet.
 
-#### `markdown` (`string`) <!-- omit in toc -->
+#### `markdown` <!-- omit in toc -->
+
+Type: `string`
 
 Get the code of a snippet in Markdown format.
 
