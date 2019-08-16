@@ -1,3 +1,9 @@
 module.exports = {
-  rootDir: 'src'
+  rootDir: 'src',
+  collectCoverageFrom: [
+    "**/*.{ts,js}",
+    "!**/coverage/**",
+    "!**/node_modules/**",
+    "!**/dist/**"
+  ]
 }

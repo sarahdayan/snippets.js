@@ -3,3 +3,4 @@ vendor
 .php_cs.cache
 dist
 markdown.md
+coverage
