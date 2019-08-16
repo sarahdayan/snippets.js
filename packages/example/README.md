@@ -4,6 +4,11 @@ This repository exposes demos for you to test Snippets and get inspiration to wr
 
 It's composed of three individual projects with source code to turn into snippets. Alongside, you have access to ready-made, runnable demos.
 
+- [Snippets Demo](#snippets-demo)
+  - [Project structure](#project-structure)
+  - [Install](#install)
+  - [Getting started](#getting-started)
+
 ## Project structure
 
 This is what the project looks like. Everything in `snippets/` is independant, and has its own ecosystem which is configured at the directory level.
@@ -26,7 +31,7 @@ example/
 
 ## Install
 
-### Languages
+### Languages<!-- omit in toc -->
 
 This demo exposes snippets in three languages:
 
@@ -38,7 +43,7 @@ Make sure you have them all installed on your machine before starting.
 
 If you're using a Unix-based system, you can also install these with [Homebrew](https://brew.sh/).
 
-### Tools
+### Tools<!-- omit in toc -->
 
 Each language uses its own set of tools to format and lint its snippets. Most of them are embarked as dependencies, but they still rely on global package managing tools that you must install yourself:
 
@@ -48,7 +53,7 @@ Each language uses its own set of tools to format and lint its snippets. Most of
 
 If you're using a Unix-based system, you can also install these with [Homebrew](https://brew.sh/).
 
-### Dependencies
+### Dependencies<!-- omit in toc -->
 
 Once you have the languages and package managers installed globally, you can run `yarn` at the root of the monorepo all dependencies.
 
@@ -58,7 +63,7 @@ This will try to install the Node.js, PHP and Ruby dependencies. Depending on ho
 
 This example exposes several demos in the `demos/` directory:
 
-### `log.js`
+### `log.js`<!-- omit in toc -->
 
 This demo logs every received `Snippet` object in the console.
 
@@ -66,7 +71,7 @@ This demo logs every received `Snippet` object in the console.
 yarn run log
 ```
 
-### `markdown.js`
+### `markdown.js`<!-- omit in toc -->
 
 This demo writes every received `Snippet` into a single Markdown file.
 
