@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "lint": "make",
+    "postinstall": "make install",
+    "lint": "make run",
     "log": "yarn lint && node demos/log",
     "markdown": "yarn lint && node demos/markdown"
   },

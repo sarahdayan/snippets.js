@@ -4,6 +4,7 @@
   "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
+    "postinstall": "yarn build",
     "test": "jest",
     "watch": "tsc -w -p .",
     "type-check": "tsc --noEmit",
