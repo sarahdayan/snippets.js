@@ -14,7 +14,7 @@ It's particularly useful in documentation projects, where you need to showcase c
 
 ## Install
 
-```
+```sh
 npm install snippets.js
 
 # or
