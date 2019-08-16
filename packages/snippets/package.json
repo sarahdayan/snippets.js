@@ -6,9 +6,14 @@
   "scripts": {
     "test": "jest",
     "watch": "tsc -w -p .",
-    "build": "tsc"
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "yarn type-check -- --watch",
+    "build": "yarn build:types && yarn build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
@@ -17,6 +22,7 @@
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.9",
     "babel-jest": "^24.8.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
     "jest": "^24.8.0",
     "typescript": "^3.5.3"
   },

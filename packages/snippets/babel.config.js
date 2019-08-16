@@ -3,11 +3,13 @@ module.exports = {
     [
       '@babel/preset-env',
       {
+        modules: 'commonjs',
         targets: {
-          node: 'current',
+          node: 'current'
         },
       },
     ],
     '@babel/preset-typescript'
-  ]
+  ],
+  plugins: ['add-module-exports']
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { default: snippets } = require('snippets')
+const snippets = require('snippets')
 
 let snippetCounter = 0
 
