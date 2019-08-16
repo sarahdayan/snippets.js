@@ -62,6 +62,24 @@ public class Factorial {
 
 A configuration can be defined via a `snippets.config.js` file, at the root of your project.
 
+```js
+module.exports = {
+  sourceDir: 'path/to/snippets/**/*'
+  ignore: ['node_modules']
+  languages: [
+    {
+      fileType: ['php'],
+      transform: code => code.replace('<?php', '')
+    },
+    {
+      fileType: ['rb'],
+      language: 'ruby',
+      transform: code => code.replace('# frozen_string_literal: true', '')
+    },
+  ]
+}
+```
+
 ### `sourceDir` <!-- omit in toc -->
 
 Type: `string`
