@@ -80,7 +80,7 @@ module.exports = {
 }
 ```
 
-### `sourceDir` <!-- omit in toc -->
+### `sourceDir`<!-- omit in toc -->
 
 Type: `string`
 
@@ -92,7 +92,7 @@ module.exports = {
 }
 ```
 
-### `ignore` <!-- omit in toc -->
+### `ignore`<!-- omit in toc -->
 
 Type: `string[]`
 
@@ -104,7 +104,7 @@ module.exports = {
 }
 ```
 
-### `languages` <!-- omit in toc -->
+### `languages`<!-- omit in toc -->
 
 Type: `{ fileType, language?, transform? }`
 
@@ -127,7 +127,7 @@ module.exports = {
 }
 ```
 
-#### `languages.fileType` <!-- omit in toc -->
+#### `languages.fileType`<!-- omit in toc -->
 
 Type: `string[]`
 
@@ -143,7 +143,7 @@ module.exports = {
 }
 ```
 
-#### `languages.language` <!-- omit in toc -->
+#### `languages.language`<!-- omit in toc -->
 
 Type: `string`
 
@@ -161,7 +161,7 @@ module.exports = {
 }
 ```
 
-#### `languages.transform` <!-- omit in toc -->
+#### `languages.transform`<!-- omit in toc -->
 
 Type:  `(code: string) => string`
 
@@ -183,7 +183,7 @@ module.exports = {
 
 The library exposes two main modules: `snippets` and `createSnippet`.
 
-### `snippets` <!-- omit in toc -->
+### `snippets`<!-- omit in toc -->
 
 Type: `NodeJS.ReadableStream`
 
@@ -191,7 +191,7 @@ The `snippets` stream is exposed by default to let you manipulate the received `
 
 You can use it to log objects to the console, write them to a file, store them in memory for later usage, anything.
 
-### `createSnippet` <!-- omit in toc -->
+### `createSnippet`<!-- omit in toc -->
 
 Type: `(options: { language, path?, code, transform? }) => Snippet`
 
@@ -221,25 +221,25 @@ echo "Hello world!"`
 const phpSnippet = createPhpSnippet(code)
 ```
 
-#### `options.language` <!-- omit in toc -->
+#### `options.language`<!-- omit in toc -->
 
 Type: `string`
 
 The language of a snippet.
 
-#### `options.path?` <!-- omit in toc -->
+#### `options.path?`<!-- omit in toc -->
 
 Type: `string`
 
 The path of a snippet's source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
-#### `options.code` <!-- omit in toc -->
+#### `options.code`<!-- omit in toc -->
 
 Type: `string`
 
 The raw code of a snippet.
 
-#### `options.transform?` <!-- omit in toc -->
+#### `options.transform?`<!-- omit in toc -->
 
 Type: `(code: string) => string`
 
@@ -247,13 +247,13 @@ A function to transform the raw code before returning it.
 
 This is useful when you want to get rid of a piece of code that's necessary in the source file, but that you don't need in the final snippet.
 
-### `Snippet` <!-- omit in toc -->
+### `Snippet`<!-- omit in toc -->
 
 A `Snippet` object contains all the information about a code snippet. This is what the library returns you when you're either using `createSnippet` manually, or listening for data on `snippets`.
 
 If you're using TypeScript, you can implement the `Snippet` interface.
 
-#### `language` <!-- omit in toc -->
+#### `language`<!-- omit in toc -->
 
 Type: `string`
 
@@ -263,7 +263,7 @@ Get the language of a snippet.
 phpSnippet.language // 'php'
 ```
 
-#### `path?` <!-- omit in toc -->
+#### `path?`<!-- omit in toc -->
 
 Type: `string`
 
@@ -275,7 +275,7 @@ This is the original path to the source file. This is only useful when you're pa
 phpSnippet.path // undefined
 ```
 
-#### `code` <!-- omit in toc -->
+#### `code`<!-- omit in toc -->
 
 Type: `string`
 
@@ -285,7 +285,7 @@ Get the code of a snippet.
 phpSnippet.code // 'echo "Hello world!"'
 ```
 
-#### `markdown` <!-- omit in toc -->
+#### `markdown`<!-- omit in toc -->
 
 Type: `string`
 
@@ -297,13 +297,13 @@ phpSnippet.markdown // '```php\necho "Hello world!"\n```'
 
 ## FAQ
 
-### Why streams? <!-- omit in toc -->
+### Why streams?<!-- omit in toc -->
 
 Snippets was built to work with many snippets, from source files. Reading through a bunch of files and storing lots of objects that potentially contain long chunks of code can become greedy in terms of memory. **Streams are an ideal solution to make sure that memory consumption remains under control.**
 
 If you don't want to use streams, you can reimplement the iteration logic as you see fit and consume the [`createSnippet`](#createsnippet) factory exposed by the library.
 
-### Can I see a demo? <!-- omit in toc -->
+### Can I see a demo?<!-- omit in toc -->
 
 Sure! This monorepo exposes a [fully working example](https://github.com/sarahdayan/snippets.js/tree/master/packages/example) in `packages/example/`. Check out the code for inspiration, and follow the README to run the demo.
 
