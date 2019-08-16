@@ -1,8 +1,8 @@
 import * as fs from 'fs'
-import { createSnippet } from '../createSnippet'
-import { getLanguageOptions } from './languages'
+import createSnippet from '../createSnippet'
+import getLanguageOptions from './languages'
 import { languages } from './options'
-import { LanguageConfig } from '../interfaces/LanguageConfig'
+import LanguageConfig from '../interfaces/LanguageConfig'
 
 const langs = getLanguageOptions(languages)
 
@@ -20,4 +20,4 @@ const createSnippetFromPath = (filepath: string) => {
   })
 }
 
-export { createSnippetFromPath }
+export default createSnippetFromPath

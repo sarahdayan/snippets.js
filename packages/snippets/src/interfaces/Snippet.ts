@@ -1,4 +1,4 @@
-export interface Snippet {
+export default interface Snippet {
   language: string,
   path?: string,
   code: string,

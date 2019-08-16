@@ -1,4 +1,4 @@
-import { LanguageConfig } from '../interfaces/LanguageConfig'
+import LanguageConfig from '../interfaces/LanguageConfig'
 
 const getLanguageOptions = (languagesConfig: LanguageConfig[]) =>
   Object.assign(
@@ -21,4 +21,4 @@ const getLanguageOptions = (languagesConfig: LanguageConfig[]) =>
     )
   )
 
-export { getLanguageOptions }
+export default getLanguageOptions

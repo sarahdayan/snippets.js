@@ -1,5 +1,5 @@
 import unindent from 'unindent'
-import { Snippet } from './interfaces/Snippet'
+import Snippet from './interfaces/Snippet'
 
 const commentRegex = /(?:#|\/\/) ?snippets-start((?:.*|\n)*?)(?:#|\/\/) ?snippets-end/
 
@@ -24,4 +24,4 @@ ${transformedCode}
   }
 }
 
-export { createSnippet }
+export default createSnippet

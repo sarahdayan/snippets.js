@@ -1,5 +1,5 @@
-import { Snippet } from './Snippet'
+import Snippet from './Snippet'
 
-export interface SnippetFactory {
-  (filepath: string, code: string): Snippet
+export default interface SnippetFactory {
+  (code: string, filepath?: string): Snippet
 }

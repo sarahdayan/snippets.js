@@ -1,4 +1,4 @@
-import { createSnippet } from '../createSnippet'
+import createSnippet from '../createSnippet'
 
 let snippet = undefined
 
