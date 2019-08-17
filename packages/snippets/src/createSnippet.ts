@@ -1,5 +1,6 @@
 import unindent from 'unindent'
 import Snippet from './interfaces/Snippet'
+import TransformFunction from './interfaces/TransformFunction'
 
 const commentRegex = /(?:#|\/\/) ?snippets-start((?:.*|\n)*?)(?:#|\/\/) ?snippets-end/
 
@@ -8,7 +9,7 @@ const createSnippet: {
     language: string,
     path?: string,
     code: string,
-    transform?: (code: string) => string
+    transform?: TransformFunction
   }): Snippet
 } = ({ language, path, code: rawCode, transform = code => code }) => {
   const [, code] = rawCode.match(commentRegex) || [null, rawCode]

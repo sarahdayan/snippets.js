@@ -1,32 +1,15 @@
-import * as fs from 'fs'
 import path from 'path'
-import gs from 'glob-stream'
-import { Transform } from 'stream'
+import createSnippetsFromConfig from './createSnippetsFromConfig'
+import getOptionsFromConfig from './helpers/getOptionsFromConfig'
 
-import { sourceDir, ignore } from './helpers/options'
-import createSnippetFromPath from './helpers/createSnippetFromPath'
+const configFile = require(path.join(process.cwd(), 'snippets.config.js'))
 
-const transformFiles = (inStream: NodeJS.ReadableStream) => {
-  const upperStream = new Transform({
-    objectMode: true,
-    transform({ path: filepath }, _, callback) {
-      fs.lstat(filepath, (err, stats) => {
-        if (err) return console.log(err)
+const { sourceDir, ignore, languages } = getOptionsFromConfig(configFile)
 
-        if (stats.isFile()) {
-          const snippet = createSnippetFromPath(filepath)
-          this.push(snippet)
-        }
+const snippets = createSnippetsFromConfig({
+  sourceDir: path.join(process.cwd(), sourceDir),
+  ignore,
+  languages
+})
 
-        callback()
-      })
-    }
-  })
-
-  return inStream.pipe(upperStream)
-}
-
-const snippetsPath = path.join(process.cwd(), sourceDir)
-const files = gs(snippetsPath, { ignore })
-
-export default transformFiles(files)
+export default snippets

@@ -1,16 +1,9 @@
-import * as fs from 'fs'
+import { readFileSync } from 'fs'
+import TransformFunction from '../interfaces/TransformFunction'
 import createSnippet from '../createSnippet'
-import getLanguageOptions from './languages'
-import { languages } from './options'
-import LanguageConfig from '../interfaces/LanguageConfig'
 
-const langs = getLanguageOptions(languages)
-
-const createSnippetFromPath = (filepath: string) => {
-  const code = fs.readFileSync(filepath, 'utf8')
-  const extension = filepath.split('.').slice(-1)[0]
-  const plugin: LanguageConfig = langs[extension] || {}
-  const { language = extension, transform } = plugin
+const createSnippetFromPath = (filepath: string, { language, transform }: { language: string, transform: TransformFunction | undefined }) => {
+  const code = readFileSync(filepath, 'utf8')
 
   return createSnippet({
     path: filepath,

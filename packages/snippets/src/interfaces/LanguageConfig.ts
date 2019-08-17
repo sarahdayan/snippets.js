@@ -1,5 +1,7 @@
+import TransformFunction from './TransformFunction'
+
 export default interface LanguageConfig {
   fileType: string[]
   language?: string
-  transform?: (code: string) => string
+  transform?: TransformFunction
 }
