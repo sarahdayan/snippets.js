@@ -1,0 +1,4 @@
+*.js linguist-detectable=false
+*.php linguist-detectable=false
+*.rb linguist-detectable=false
+*.go linguist-detectable=false
