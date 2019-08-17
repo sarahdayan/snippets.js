@@ -9,7 +9,7 @@ const getLanguageOptions: {
     Object.assign(
       {},
       ...languageConfig.map(
-        ({ fileType = [], language, transform = code => code }) =>
+        ({ fileType = [], language, transform }) =>
           Object.assign(
             {},
             ...fileType.map((type: string) => ({
