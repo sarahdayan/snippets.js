@@ -4,17 +4,15 @@ import { Transform } from 'stream'
 import TransformFunction from './interfaces/TransformFunction'
 import createSnippetFromPath from './helpers/createSnippetFromPath'
 
-const createSnippetsFromConfig = ({
-  sourceDir,
-  ignore,
-  languages
-}: {
-  sourceDir: string,
-  ignore: string[],
-  languages: {
-    [key: string]: { language?: string, transform?: TransformFunction }
-  }
-}) => {
+const createSnippetsFromConfig: {
+  (options: {
+    sourceDir: string,
+    ignore?: string[],
+    languages?: {
+      [key: string]: { language?: string, transform?: TransformFunction }
+    }
+  }): NodeJS.ReadableStream
+} = ({ sourceDir, ignore, languages }) => {
   const transformFiles = (inStream: NodeJS.ReadableStream) => {
     const upperStream = new Transform({
       objectMode: true,
@@ -24,8 +22,8 @@ const createSnippetsFromConfig = ({
 
           if (stats.isFile()) {
             const extension = filepath.split('.').slice(-1)[0]
-            const { language = extension, transform = undefined } =
-              languages[extension] || {}
+            const options = languages && languages[extension] ? languages[extension] : { language: undefined, transform: undefined }
+            const { language = extension, transform = undefined } = options
 
             const snippet = createSnippetFromPath(filepath, {
               language,
