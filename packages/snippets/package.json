@@ -10,7 +10,9 @@
     "type-check": "tsc --noEmit",
     "build": "yarn build:types && yarn build:js",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline"
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+    "lint": "eslint src",
+    "lint:fix": "yarn lint -- --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -21,9 +23,19 @@
     "@types/glob-stream": "^6.1.0",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.9",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
     "babel-plugin-add-module-exports": "^1.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-algolia": "^13.4.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.1",
+    "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.8.0",
+    "prettier": "^1.18.2",
     "typescript": "^3.5.3"
   },
   "files": [
