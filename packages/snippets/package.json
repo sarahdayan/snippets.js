@@ -6,9 +6,8 @@
   "scripts": {
     "postinstall": "yarn build",
     "test": "jest",
-    "watch": "tsc -w -p .",
+    "watch": "yarn type-check -- --watch",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check -- --watch",
     "build": "yarn build:types && yarn build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline"
