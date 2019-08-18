@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "clean": "lerna clean"
+    "clean:dependencies": "lerna clean --yes",
+    "clean:dist": "lerna exec -- rm -rf ./dist",
+    "clean": "yarn clean:dependencies && yarn clean:dist"
   },
   "workspaces": [
     "packages/*"
