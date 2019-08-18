@@ -1,7 +1,9 @@
+const path = require('path')
+
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
-  sourceDir: 'snippets/*',
-  ignore: ['snippets/ignore/*'],
+  sourceDir: path.join(__dirname, 'snippets/*'),
+  ignore: [path.join(__dirname, 'snippets/ignore/*')],
   languages: [
     {
       fileType: ['php'],
