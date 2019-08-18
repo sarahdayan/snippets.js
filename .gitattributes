@@ -2,3 +2,6 @@
 *.php linguist-detectable=false
 *.rb linguist-detectable=false
 *.go linguist-detectable=false
+*.cs linguist-detectable=false
+Gemfile linguist-detectable=false
+Makefile linguist-detectable=false
