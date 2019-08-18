@@ -18,7 +18,7 @@ const createSnippetsFromConfig: {
       objectMode: true,
       transform({ path: filepath }, _, callback) {
         lstat(filepath, (err, stats) => {
-          if (err) return console.log(err)
+          if (err) throw err
 
           if (stats.isFile()) {
             const extension = filepath.split('.').slice(-1)[0]
