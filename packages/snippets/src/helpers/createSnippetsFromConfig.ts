@@ -1,8 +1,8 @@
 import { lstat } from 'fs'
 import gs from 'glob-stream'
 import { Transform } from 'stream'
-import TransformFunction from './interfaces/TransformFunction'
-import createSnippetFromPath from './helpers/createSnippetFromPath'
+import TransformFunction from '../interfaces/TransformFunction'
+import createSnippetFromPath from '../helpers/createSnippetFromPath'
 
 const createSnippetsFromConfig: {
   (options: {

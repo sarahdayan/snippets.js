@@ -1,10 +1,10 @@
 import path from 'path'
-import Snippet from '../interfaces/Snippet'
+import Snippet from '../../interfaces/Snippet'
 import createSnippetsFromConfig from '../createSnippetsFromConfig'
 
 let snippets: NodeJS.ReadableStream
 
-const baseDir = '../__fixtures__/snippets/'
+const baseDir = '../../__fixtures__/snippets/'
 const sourceDir = path.join(__dirname, baseDir, '**/*')
 const ignorePath = path.join(__dirname, baseDir, 'ignore/*')
 
