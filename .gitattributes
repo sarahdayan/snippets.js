@@ -4,4 +4,5 @@
 *.go linguist-detectable=false
 *.cs linguist-detectable=false
 Gemfile linguist-detectable=false
+Gemfile.lock linguist-detectable=false
 Makefile linguist-detectable=false
