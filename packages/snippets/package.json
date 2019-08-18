@@ -1,7 +1,7 @@
 {
   "name": "snippets",
   "version": "0.0.1",
-  "main": "./dist/index.js",
+  "main": "./dist/snippets.js",
   "license": "MIT",
   "scripts": {
     "postinstall": "yarn build",

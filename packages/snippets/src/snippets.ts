@@ -1,13 +1,13 @@
-import path from 'path'
 import createSnippetsFromConfig from './helpers/createSnippetsFromConfig'
 import getOptionsFromConfig from './helpers/getOptionsFromConfig'
+import getConfigFile from './helpers/getConfigFile'
 
-const configFile = require(path.join(process.cwd(), 'snippets.config.js'))
+const configFile = getConfigFile()
 
 const { sourceDir, ignore, languages } = getOptionsFromConfig(configFile)
 
 const snippets = createSnippetsFromConfig({
-  sourceDir: path.join(process.cwd(), sourceDir),
+  sourceDir,
   ignore,
   languages
 })
