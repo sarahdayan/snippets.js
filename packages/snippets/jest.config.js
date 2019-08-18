@@ -6,5 +6,6 @@ module.exports = {
     '!**/node_modules/**',
     '!**/dist/**',
     '!**/__fixtures__/**',
+    '!**/__helpers__/**'
   ]
 }
