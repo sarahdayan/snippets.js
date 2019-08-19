@@ -53,11 +53,11 @@ describe('createSnippetsFromConfig', () => {
 
     const snippetCollection = await createSnippetCollection(snippets)
 
-    const rubySnippet = snippetCollection.filter(
+    const { length: rubySnippetCount } = snippetCollection.filter(
       ({ language }) => language === 'ruby'
     )
 
-    expect(rubySnippet.length).toBe(1)
+    expect(rubySnippetCount).toBe(1)
   })
   test('uses the assigned `transform` function', async () => {
     const snippets = snippetsFactory({
@@ -72,7 +72,7 @@ describe('createSnippetsFromConfig', () => {
 
     const { code } = snippetCollection.find(
       ({ language }) => language === 'php'
-    )
+    ) || { code: '' }
 
     expect(code).toBe('echo "Hello, world!";')
   })

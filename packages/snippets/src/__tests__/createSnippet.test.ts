@@ -1,30 +1,30 @@
 import createSnippet from '../createSnippet'
 
-let snippet = undefined
-
 const snippetOptions = {
   language: 'java',
   path: 'path/to/snippet',
   code: 'System.out.println("Hello, World");'
 }
 
-beforeEach(() => {
-  snippet = createSnippet(snippetOptions)
-})
-
 describe('createSnippet', () => {
   describe('#language', () => {
     test('returns the language', () => {
+      const snippet = createSnippet(snippetOptions)
+
       expect(snippet.language).toBe('java')
     })
   })
   describe('#path', () => {
     test('returns the path', () => {
+      const snippet = createSnippet(snippetOptions)
+
       expect(snippet.path).toBe('path/to/snippet')
     })
   })
   describe('#code', () => {
     test('returns the code', () => {
+      const snippet = createSnippet(snippetOptions)
+
       expect(snippet.code).toBe('System.out.println("Hello, World");')
     })
     test('returns the transformed code', () => {
@@ -33,6 +33,8 @@ describe('createSnippet', () => {
       expect(code).toBe('SYSTEM.OUT.PRINTLN("HELLO, WORLD");')
     })
     test('returns the code in Markdown', () => {
+      const snippet = createSnippet(snippetOptions)
+
       expect(snippet.markdown).toBe(`\`\`\`java
 System.out.println("Hello, World");
 \`\`\``)
