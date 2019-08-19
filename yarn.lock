@@ -6780,7 +6780,7 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-"snippets@file:packages/snippets":
+"snippets.js@file:packages/snippets.js":
   version "0.0.1"
   dependencies:
     glob-stream "^6.1.0"

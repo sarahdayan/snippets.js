@@ -9,6 +9,6 @@
     "markdown": "yarn lint && node demos/markdown"
   },
   "dependencies": {
-    "snippets": "file:../snippets"
+    "snippets.js": "file:../snippets.js"
   }
 }
