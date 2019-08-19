@@ -4,6 +4,8 @@ Snippets helps you extract code snippets from source files so you can use them a
 
 It's particularly useful in documentation projects, where you need to showcase code snippets but can't either run or lint them to ensure they're correct. Snippets integrates in your workflow and returns a collection of parsed snippets.
 
+> **WARNING:** The API is still unstable. Do not use in production yet.
+
 - [Install](#install)
 - [Getting started](#getting-started)
 - [Configuration file](#configuration-file)
