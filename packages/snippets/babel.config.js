@@ -11,5 +11,11 @@ module.exports = {
     ],
     '@babel/preset-typescript'
   ],
-  plugins: ['add-module-exports']
+  plugins: ['add-module-exports'],
+  ignore: [
+    '**/interfaces/*',
+    '**/__tests__/*',
+    '**/__helpers__/*',
+    '**/unindent.d.ts'
+  ]
 }
