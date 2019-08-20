@@ -251,6 +251,17 @@ echo "Hello world!"`;
 const phpSnippet = createPhpSnippet(code);
 ```
 
+If you're using TypeScript, you can implement the `SnippetFactory` interface.
+
+```ts
+const createPhpSnippet: SnippetFactory = code =>
+  createSnippet({
+    language: "php",
+    code,
+    transform: code => code.replace("<?php", "")
+  });
+```
+
 #### `options.language`<!-- omit in toc -->
 
 Type: `string`
@@ -282,6 +293,14 @@ This is useful when you want to get rid of a piece of code that's necessary in t
 A `Snippet` object contains all the information about a code snippet. This is what the library returns you when you're either using `createSnippet` manually, or listening for data on `snippets`.
 
 If you're using TypeScript, you can implement the `Snippet` interface.
+
+```ts
+const snippet: Snippet = createSnippet({
+  language: "php",
+  code: '<?php\necho "Hello world!"',
+  transform: code => code.replace("<?php", "")
+});
+```
 
 #### `language`<!-- omit in toc -->
 
