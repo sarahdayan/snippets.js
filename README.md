@@ -331,7 +331,7 @@ Type: `string`
 Get the language of a snippet.
 
 ```js
-phpSnippet.language; // 'php'
+snippet.language; // 'php'
 ```
 
 #### `path?`<!-- omit in toc -->
@@ -343,7 +343,7 @@ Get the path of a snippet.
 This is the original path to the source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
 ```js
-phpSnippet.path; // undefined
+snippet.path; // 'path/to/original/snippet.php'
 ```
 
 #### `code`<!-- omit in toc -->
@@ -353,7 +353,7 @@ Type: `string`
 Get the code of a snippet.
 
 ```js
-phpSnippet.code; // 'echo "Hello world!"'
+snippet.code; // 'echo "Hello world!"'
 ```
 
 #### `markdown`<!-- omit in toc -->
@@ -363,7 +363,7 @@ Type: `string`
 Get the code of a snippet in Markdown format.
 
 ````js
-phpSnippet.markdown; // '```php\necho "Hello world!"\n```'
+snippet.markdown; // '```php\necho "Hello world!"\n```'
 ````
 
 ## FAQ
