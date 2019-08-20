@@ -86,7 +86,7 @@ print "Factorial of %s = %d" % (num,factorial)
 
 ## API
 
-The library exposes two main modules: `createSnippets` and `createSnippet`.
+The library exposes two main modules: [`createSnippets`](#createsnippets) and [`createSnippet`](#createsnippet).
 
 ### `createSnippets`<!-- omit in toc -->
 
