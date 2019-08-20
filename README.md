@@ -235,7 +235,7 @@ const phpSnippet = createSnippet({
 });
 ```
 
-You can use `createSnippet` to manually generate snippets as in the example above, or to build your own snippet factories for specific languages. If you're using TypeScript, you can implement the `SnippetFactory` interface.
+You can use `createSnippet` to manually generate snippets as in the example above, or to build your own snippet factories for specific languages.
 
 ```js
 const createPhpSnippet = code =>
@@ -245,8 +245,7 @@ const createPhpSnippet = code =>
     transform: code => code.replace("<?php", "")
   });
 
-const code = `<?php
-echo "Hello world!"`;
+const code = '<?php\necho "Hello world!"';
 
 const phpSnippet = createPhpSnippet(code);
 ```
