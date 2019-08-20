@@ -1,6 +1,6 @@
 import unindent from 'unindent'
-import Snippet from './interfaces/Snippet'
-import TransformFunction from './interfaces/TransformFunction'
+import Snippet from '../interfaces/Snippet'
+import TransformFunction from '../interfaces/TransformFunction'
 
 const commentRegex = /(?:#|\/\/) ?snippets-start((?:.*|\n)*?)(?:#|\/\/) ?snippets-end/
 

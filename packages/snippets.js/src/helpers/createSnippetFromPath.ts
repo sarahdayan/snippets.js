@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
 import TransformFunction from '../interfaces/TransformFunction'
-import createSnippet from '../createSnippet'
+import createSnippet from './createSnippet'
 
 const createSnippetFromPath = (filepath: string, { language, transform }: { language: string, transform?: TransformFunction | undefined }) => {
   const code = readFileSync(filepath, 'utf8')

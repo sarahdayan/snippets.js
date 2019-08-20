@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const snippets = require('snippets.js')
+const { snippets } = require('snippets.js')
 
 let snippetCounter = 0
 

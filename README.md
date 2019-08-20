@@ -28,7 +28,7 @@ yarn add snippets.js
 Snippets iterates over your source files, generates snippet objects, and exposes them through a readable stream.
 
 ```js
-const snippets = require("snippets.js");
+const { snippets } = require("snippets.js");
 
 snippets.on("data", snippet => {
   console.log(snippet);

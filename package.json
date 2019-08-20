@@ -1,6 +1,5 @@
 {
   "name": "snippets.js",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "clean:dependencies": "lerna clean --yes",
