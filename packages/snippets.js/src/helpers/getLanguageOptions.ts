@@ -4,7 +4,7 @@ import TransformFunction from '../interfaces/TransformFunction'
 const getLanguageOptions: {
   (
     languageConfig: LanguageConfig[]
-  ): { [key: string]: { language: string, transform: TransformFunction } }
+  ): { [key: string]: { language?: string, transform?: TransformFunction } }
 } = languageConfig =>
     Object.assign(
       {},

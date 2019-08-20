@@ -145,7 +145,7 @@ snippets.on("end", () => {
 
 #### `sourceDir?`<!-- omit in toc -->
 
-Type: `string`
+Type: `string | undefined`
 
 The path where to find the source snippets. Supports [glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)).
 
@@ -157,7 +157,7 @@ module.exports = {
 
 #### `ignore?`<!-- omit in toc -->
 
-Type: `string[]`
+Type: `string[] | undefined`
 
 The paths to ignore. Supports [glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)).
 
@@ -169,7 +169,7 @@ module.exports = {
 
 #### `languages?`<!-- omit in toc -->
 
-Type: `{ fileType, language?, transform? }`
+Type: `{ fileType, language?, transform? }[] | undefined`
 
 A collection of rules to handle languages. This lets you apply specific treatment to each snippet based on file type.
 
@@ -206,9 +206,9 @@ module.exports = {
 };
 ```
 
-##### `languages.language`<!-- omit in toc -->
+##### `languages.language?`<!-- omit in toc -->
 
-Type: `string`
+Type: `string | undefined`
 
 The language slug to assign to the snippet. This is used as language for the Markdown fenced blocks.
 
@@ -224,9 +224,9 @@ module.exports = {
 };
 ```
 
-##### `languages.transform`<!-- omit in toc -->
+##### `languages.transform?`<!-- omit in toc -->
 
-Type: `(code: string) => string`
+Type: `(code: string) => string | undefined`
 
 A transform function to apply on the code.
 
@@ -292,7 +292,7 @@ The language of a snippet.
 
 #### `options.path?`<!-- omit in toc -->
 
-Type: `string`
+Type: `string | undefined`
 
 The path of a snippet's source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
@@ -304,7 +304,7 @@ The raw code of a snippet.
 
 #### `options.transform?`<!-- omit in toc -->
 
-Type: `(code: string) => string`
+Type: `(code: string) => string | undefined`
 
 A function to transform the raw code before returning it.
 
@@ -336,7 +336,7 @@ phpSnippet.language; // 'php'
 
 #### `path?`<!-- omit in toc -->
 
-Type: `string`
+Type: `string | undefined`
 
 Get the path of a snippet.
 
