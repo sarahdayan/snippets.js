@@ -31,14 +31,7 @@ const { createSnippets } = require("snippets.js");
 
 const snippets = createSnippets({
   sourceDir: "path/to/snippets/*",
-  ignore: ["node_modules/*"],
-  languages: [
-    {
-      fileType: ["rb"],
-      language: "ruby",
-      transform: code => code.replace("# frozen_string_literal: true", "")
-    }
-  ]
+  ignore: ["node_modules/*"]
 });
 
 snippets.on("data", snippet => {
@@ -47,6 +40,34 @@ snippets.on("data", snippet => {
 
 snippets.on("end", () => {
   console.log("Finished parsing snippets!");
+});
+```
+
+By default, Snippets.js parses the file extension and sets it as the snippet's language. You can change it in the `languages` setting.
+
+```js
+const snippets = createSnippets({
+  // ...
+  languages: [
+    {
+      fileType: ["rb"],
+      language: "ruby"
+    }
+  ]
+});
+```
+
+You can also transform the raw input code. This is useful when you need to remove a piece of code (think `<?php` in PHP snippets, for instance).
+
+```js
+const snippets = createSnippets({
+  // ...
+  languages: [
+    {
+      // ...
+      transform: code => code.replace("# frozen_string_literal: true", "")
+    }
+  ]
 });
 ```
 
