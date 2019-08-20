@@ -4,3 +4,5 @@ vendor
 dist
 markdown.md
 coverage
+*.yaml
+yarn-error.log

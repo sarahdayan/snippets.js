@@ -76,3 +76,11 @@ This demo writes every received `Snippet` into a single Markdown file.
 ```js
 yarn run markdown
 ```
+
+### `yaml.js`<!-- omit in toc -->
+
+This demo groups similar `Snippet` objects and writes them into YAML files.
+
+```js
+yarn run yaml
+```
