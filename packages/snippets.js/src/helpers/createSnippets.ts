@@ -5,7 +5,14 @@ import getOptionsFromConfig from './getOptionsFromConfig'
 import createSnippetFromPath from './createSnippetFromPath'
 import Config from '../interfaces/Config'
 
-const createSnippets = (config: Config): NodeJS.ReadStream => {
+/**
+ * A factory function to create a stream of Snippet objects
+ *
+ * @param config A configuration to create Snippet objects
+ *
+ * @returns A readable stream of Snippet objects
+ */
+const createSnippets = (config: Config): NodeJS.ReadableStream => {
   const { sourceDir, ignore, languages } = getOptionsFromConfig(config)
 
   const transformFiles = (inStream: NodeJS.ReadableStream) => {
@@ -18,7 +25,7 @@ const createSnippets = (config: Config): NodeJS.ReadStream => {
           if (stats.isFile()) {
             const extension = filepath.split('.').slice(-1)[0]
             const options = languages && languages[extension] ? languages[extension] : { language: undefined, transform: undefined }
-            const { language = extension, transform = undefined } = options
+            const { language = extension, transform } = options
 
             const snippet = createSnippetFromPath(filepath, {
               language,
