@@ -1,14 +1,13 @@
 # Snippets.js<!-- omit in toc -->
 
-Snippets helps you extract code snippets from source files so you can use them as text in your own projects.
+Snippets.js helps you extract code snippets from source files so you can use them as text in your own projects.
 
-It's particularly useful in documentation projects, where you need to showcase code snippets but can't either run or lint them to ensure they're correct. Snippets integrates in your workflow and returns a collection of parsed snippets.
+It's particularly useful in documentation projects, where you need to showcase pieces of code but can't either run or lint them to ensure they're correct. Snippets.js integrates in your workflow and returns a collection of parsed snippets.
 
 > **WARNING:** The API is still unstable. Do not use in production yet.
 
 - [Install](#install)
 - [Getting started](#getting-started)
-- [Configuration file](#configuration-file)
 - [API](#api)
 - [FAQ](#faq)
 - [License](#license)
@@ -25,10 +24,22 @@ yarn add snippets.js
 
 ## Getting started
 
-Snippets iterates over your source files, generates snippet objects, and exposes them through a readable stream.
+Snippets.js iterates over your source files, generates snippet objects, and exposes them through a readable stream.
 
 ```js
-const { snippets } = require("snippets.js");
+const { createSnippets } = require("snippets.js");
+
+const snippets = createSnippets({
+  sourceDir: "path/to/snippets/*",
+  ignore: ["node_modules/*"],
+  languages: [
+    {
+      fileType: ["rb"],
+      language: "ruby",
+      transform: code => code.replace("# frozen_string_literal: true", "")
+    }
+  ]
+});
 
 snippets.on("data", snippet => {
   console.log(snippet);
@@ -46,46 +57,74 @@ Comments work with `//` and `#`.
 ```java
 public class Factorial {
   public static void main(String[] args) {
-    // snippets-start
     int num = 10;
     long factorial = 1;
+
+    // snippets-start
     for(int i = 1; i <= num; ++i)
     {
         factorial *= i;
     }
-    System.out.printf("Factorial of %d = %d", num, factorial);
     // snippets-end
+
+    System.out.printf("Factorial of %d = %d", num, factorial);
   }
 }
 ```
 
-## Configuration file
+```python
+num = 10
+factorial = 1
 
-A configuration can be defined via a `snippets.config.js` file, at the root of your project.
+# snippets-start
+for i in range(1,num+1):
+    factorial = factorial * i
+# snippets-end
 
-```js
-module.exports = {
-  sourceDir: 'path/to/snippets/**/*'
-  ignore: ['node_modules']
-  languages: [
-    {
-      fileType: ['php'],
-      transform: code => code.replace('<?php', '')
-    },
-    {
-      fileType: ['rb'],
-      language: 'ruby',
-      transform: code => code.replace('# frozen_string_literal: true', '')
-    },
-  ]
-}
+print "Factorial of %s = %d" % (num,factorial)
 ```
 
-### `sourceDir`<!-- omit in toc -->
+## API
+
+The library exposes two main modules: `createSnippets` and `createSnippet`.
+
+### `createSnippets`<!-- omit in toc -->
+
+Type: `(config: { sourceDir?, ignore?, languages? }) => NodeJS.ReadableStream`
+
+The `createSnippets` factory lets you generate a readable stream of `Snippet` objects from source files.
+
+You can use it to log objects to the console, write them to a file, store them in memory for later usage, anything.
+
+```js
+const { createSnippets } = require("snippets.js");
+
+const snippets = createSnippets({
+  sourceDir: "path/to/snippets/*",
+  ignore: ["node_modules/*"],
+  languages: [
+    {
+      fileType: ["rb"],
+      language: "ruby",
+      transform: code => code.replace("# frozen_string_literal: true", "")
+    }
+  ]
+});
+
+snippets.on("data", snippet => {
+  console.log(snippet);
+});
+
+snippets.on("end", () => {
+  console.log("Finished parsing snippets!");
+});
+```
+
+#### `sourceDir?`<!-- omit in toc -->
 
 Type: `string`
 
-The path where to find the source snippets. Supports glob patterns.
+The path where to find the source snippets. Supports [glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)).
 
 ```js
 module.exports = {
@@ -93,11 +132,11 @@ module.exports = {
 };
 ```
 
-### `ignore`<!-- omit in toc -->
+#### `ignore?`<!-- omit in toc -->
 
 Type: `string[]`
 
-The paths to ignore. Supports glob patterns.
+The paths to ignore. Supports [glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)).
 
 ```js
 module.exports = {
@@ -105,7 +144,7 @@ module.exports = {
 };
 ```
 
-### `languages`<!-- omit in toc -->
+#### `languages?`<!-- omit in toc -->
 
 Type: `{ fileType, language?, transform? }`
 
@@ -128,7 +167,7 @@ module.exports = {
 };
 ```
 
-#### `languages.fileType`<!-- omit in toc -->
+##### `languages.fileType`<!-- omit in toc -->
 
 Type: `string[]`
 
@@ -144,7 +183,7 @@ module.exports = {
 };
 ```
 
-#### `languages.language`<!-- omit in toc -->
+##### `languages.language`<!-- omit in toc -->
 
 Type: `string`
 
@@ -162,7 +201,7 @@ module.exports = {
 };
 ```
 
-#### `languages.transform`<!-- omit in toc -->
+##### `languages.transform`<!-- omit in toc -->
 
 Type: `(code: string) => string`
 
@@ -180,18 +219,6 @@ module.exports = {
 };
 ```
 
-## API
-
-The library exposes two main modules: `snippets` and `createSnippet`.
-
-### `snippets`<!-- omit in toc -->
-
-Type: `NodeJS.ReadableStream`
-
-The `snippets` stream is exposed by default to let you manipulate the received `Snippet` objects. It works along with the [configuration file](#configuration-file), finds and parses your snippets for you, and exposes them through a readable stream.
-
-You can use it to log objects to the console, write them to a file, store them in memory for later usage, anything.
-
 ### `createSnippet`<!-- omit in toc -->
 
 Type: `(options: { language, path?, code, transform? }) => Snippet`
@@ -199,15 +226,16 @@ Type: `(options: { language, path?, code, transform? }) => Snippet`
 The `createSnippet` factory lets you generate `Snippet` objects from source input. This is what the library uses internally to generate snippets from your source files.
 
 ```js
+const { createSnippet } = require("snippets.js");
+
 const phpSnippet = createSnippet({
   language: "php",
-  code: `<?php
-echo "Hello world!"`,
+  code: '<?php\necho "Hello world!"',
   transform: code => code.replace("<?php", "")
 });
 ```
 
-You can use `createSnippet` to create snippets manually as in the example above, or to build your own snippet factories for specific languages. If you're using TypeScript, you can implement the `SnippetFactory` interface.
+You can use `createSnippet` to manually generate snippets as in the example above, or to build your own snippet factories for specific languages. If you're using TypeScript, you can implement the `SnippetFactory` interface.
 
 ```js
 const createPhpSnippet = code =>
@@ -301,7 +329,7 @@ phpSnippet.markdown; // '```php\necho "Hello world!"\n```'
 
 ### Why streams?<!-- omit in toc -->
 
-Snippets was built to work with many snippets, from source files. Reading through a bunch of files and storing lots of objects that potentially contain long chunks of code can become greedy in terms of memory. **Streams are an ideal solution to make sure that memory consumption remains under control.**
+Snippets.js was built to work with many snippets, from source files. Reading through a bunch of files and storing lots of objects that potentially contain long chunks of code can become greedy in terms of memory. **Streams are an ideal solution to make sure that memory consumption remains under control.**
 
 If you don't want to use streams, you can reimplement the iteration logic as you see fit and consume the [`createSnippet`](#createsnippet) factory exposed by the library.
 
