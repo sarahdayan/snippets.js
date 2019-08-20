@@ -1,14 +1,14 @@
 import path from 'path'
 import Snippet from '../../interfaces/Snippet'
 import processSnippets from '../../__helpers__/processSnippets'
-import createSnippetsFromConfig from '../createSnippetsFromConfig'
+import createSnippets from '../createSnippets'
 
 const baseDir = '../../__fixtures__/snippets/'
 const sourceDir = path.join(__dirname, baseDir, '**/*')
 const ignorePath = path.join(__dirname, baseDir, 'ignore/*')
 
 const snippetsFactory = (extraConfig = {}) =>
-  createSnippetsFromConfig({
+  createSnippets({
     sourceDir,
     ...extraConfig
   })
@@ -26,7 +26,7 @@ const createSnippetCollection = (snippets: NodeJS.ReadableStream) =>
     []
   )
 
-describe('createSnippetsFromConfig', () => {
+describe('createSnippets', () => {
   test('looks for snippets into `sourceDir` option', async () => {
     const snippets = snippetsFactory()
     const snippetCounter = await createSnippetCounter(snippets)
@@ -44,11 +44,12 @@ describe('createSnippetsFromConfig', () => {
   test('sets the assigned `language` as the snippet language', async () => {
     const snippets = snippetsFactory({
       ignore: [ignorePath],
-      languages: {
-        rb: {
+      languages: [
+        {
+          fileType: ['rb'],
           language: 'ruby'
         }
-      }
+      ]
     })
 
     const snippetCollection = await createSnippetCollection(snippets)
@@ -61,11 +62,12 @@ describe('createSnippetsFromConfig', () => {
   })
   test('uses the assigned `transform` function', async () => {
     const snippets = snippetsFactory({
-      languages: {
-        php: {
-          transform: (code: string) => code.replace('<?php', '')
+      languages: [
+        {
+          fileType: ['php'],
+          transform: code => code.replace('<?php', '')
         }
-      }
+      ]
     })
 
     const snippetCollection = await createSnippetCollection(snippets)

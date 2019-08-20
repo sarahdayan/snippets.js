@@ -1,18 +1,13 @@
 import { lstat } from 'fs'
 import gs from 'glob-stream'
 import { Transform } from 'stream'
-import TransformFunction from '../interfaces/TransformFunction'
-import createSnippetFromPath from '../helpers/createSnippetFromPath'
+import getOptionsFromConfig from './getOptionsFromConfig'
+import createSnippetFromPath from './createSnippetFromPath'
+import Config from '../interfaces/Config'
 
-const createSnippetsFromConfig: {
-  (options: {
-    sourceDir: string,
-    ignore?: string[],
-    languages?: {
-      [key: string]: { language?: string, transform?: TransformFunction }
-    }
-  }): NodeJS.ReadableStream
-} = ({ sourceDir, ignore, languages }) => {
+const createSnippets = (config: Config) => {
+  const { sourceDir, ignore, languages } = getOptionsFromConfig(config)
+
   const transformFiles = (inStream: NodeJS.ReadableStream) => {
     const upperStream = new Transform({
       objectMode: true,
@@ -45,4 +40,4 @@ const createSnippetsFromConfig: {
   return transformFiles(files)
 }
 
-export default createSnippetsFromConfig
+export default createSnippets
