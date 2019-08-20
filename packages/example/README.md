@@ -14,7 +14,7 @@ This is what the project looks like. Everything in `snippets/` is independant, a
 
 The `demos/` directory contains JavaScript scripts that consume the `snippets.js` library, crawl your source files, generate snippets out of them, and output them in different ways.
 
-Orchestration scripts are shared between a `Makefile` and `package.json` (Node scripts). The project uses a `snippets.config.js` file to configure how Snippets should behave.
+Orchestration scripts are shared between a `Makefile` and `package.json` (Node scripts).
 
 ```
 example/
@@ -24,8 +24,7 @@ example/
 │   ├── php/            // The PHP snippets
 │   └── ruby/           // The Ruby snippets
 ├── Makefile            // The scripts to install and run the demos
-├── package.json        // The scripts that orchestrate the project
-└── snippets.config.js  // The configuration file for Snippets
+└── package.json        // The scripts that orchestrate the project
 ```
 
 ## Install

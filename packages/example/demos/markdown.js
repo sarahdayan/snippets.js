@@ -2,7 +2,10 @@
 
 const fs = require('fs')
 const path = require('path')
-const { snippets } = require('snippets.js')
+const { createSnippets } = require('snippets.js')
+const options = require('./shared/options')
+
+const snippets = createSnippets(options)
 
 const outputFileName = 'markdown.md'
 const outputFile = fs.createWriteStream(path.join(process.cwd(), outputFileName))

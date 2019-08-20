@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-const { snippets } = require('snippets.js')
+const { createSnippets } = require('snippets.js')
+const options = require('./shared/options')
+
+const snippets = createSnippets(options)
 
 let snippetCounter = 0
 
