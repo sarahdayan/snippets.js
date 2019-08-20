@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit",
     "build": "yarn build:types && yarn build:js",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir dist --extensions \".ts\" --source-maps inline",
+    "build:js": "babel src --out-dir dist --extensions \".ts\" --source-maps inline --ignore \"**/interfaces/*\",\"**/__tests__/*\",\"**/__helpers__/*\",\"**/unindent.d.ts\"",
     "lint": "eslint src",
     "lint:fix": "yarn lint -- --fix"
   },
