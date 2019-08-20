@@ -5,7 +5,7 @@ import getOptionsFromConfig from './getOptionsFromConfig'
 import createSnippetFromPath from './createSnippetFromPath'
 import Config from '../interfaces/Config'
 
-const createSnippets = (config: Config) => {
+const createSnippets = (config: Config): NodeJS.ReadStream => {
   const { sourceDir, ignore, languages } = getOptionsFromConfig(config)
 
   const transformFiles = (inStream: NodeJS.ReadableStream) => {
