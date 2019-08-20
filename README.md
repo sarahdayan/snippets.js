@@ -88,6 +88,8 @@ print "Factorial of %s = %d" % (num,factorial)
 
 The library exposes two main modules: [`createSnippets`](#createsnippets) and [`createSnippet`](#createsnippet).
 
+They both let you generate [`Snippet`](#snippet) objects.
+
 ### `createSnippets`<!-- omit in toc -->
 
 Type: `(config: { sourceDir?, ignore?, languages? }) => NodeJS.ReadableStream`
