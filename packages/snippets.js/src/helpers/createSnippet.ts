@@ -24,7 +24,7 @@ const createSnippet: {
     transform?: TransformFunction
   }): Snippet
 } = ({ language, path, code: rawCode, transform = code => code }) => {
-  const [, code] = rawCode.match(commentRegex) || [null, rawCode]
+  const [, code] = rawCode.match(commentRegex) || ['', rawCode]
   const transformedCode = unindent(transform(code)).trim()
 
   return {
