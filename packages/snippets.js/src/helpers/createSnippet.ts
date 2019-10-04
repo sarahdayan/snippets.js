@@ -7,6 +7,7 @@ import TransformFunction from '../interfaces/TransformFunction'
  *
  * https://github.com/sarahdayan/snippets.js#snippet
  *
+ * @param options.name The name of the snippet
  * @param options.language The language of the snippet
  * @param options.path The path to the original source file
  * @param options.code The code of the snippet
@@ -16,15 +17,17 @@ import TransformFunction from '../interfaces/TransformFunction'
  */
 const createSnippet: {
   (options: {
+    name?: string,
     language: string,
     path?: string,
     code: string,
     transform?: TransformFunction
   }): Snippet
-} = ({ language, path, code: rawCode, transform = code => code }) => {
+} = ({ name, language, path, code: rawCode, transform = code => code }) => {
   const transformedCode = normalizeCode(transform(rawCode))
 
   return {
+    name,
     language,
     path,
     code: transformedCode,

@@ -75,8 +75,6 @@ If you only need to parse a chunk of a longer snippet, you can add special comme
 
 Comments work with `//` and `#`.
 
-> **Note:** Overlapping and nested comments aren't supported.
-
 ```java
 public class Factorial {
   public static void main(String[] args) {
@@ -105,6 +103,26 @@ for i in range(1,num+1):
 # snippets-end
 
 print "Factorial of %s = %d" % (num,factorial)
+```
+
+You can create several commented parts in a single snippet to chunk it into several snippet objects.
+
+Additionally, you can name snippets by suffixing the start comment with `:<your-name>`. Snippet names can include letters, numbers, hyphens and underscores.
+
+> **Note:** Overlapping and nested comments aren't supported.
+
+```python
+num = 10
+factorial = 1
+
+# snippets-start
+for i in range(1,num+1):
+    factorial = factorial * i
+# snippets-end
+
+# snippets-start:my-snippet
+print "Factorial of %s = %d" % (num,factorial)
+# snippets-end
 ```
 
 ## API

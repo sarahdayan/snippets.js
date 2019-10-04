@@ -7,6 +7,16 @@ const snippetOptions = {
 }
 
 describe('createSnippet', () => {
+  describe('#name', () => {
+    test('returns the name', () => {
+      const { name } = createSnippet({
+        name: 'my-snippet',
+        ...snippetOptions
+      })
+
+      expect(name).toBe('my-snippet')
+    })
+  })
   describe('#language', () => {
     test('returns the language', () => {
       const snippet = createSnippet(snippetOptions)

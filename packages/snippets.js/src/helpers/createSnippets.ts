@@ -32,8 +32,9 @@ const createSnippets = (config: Config): NodeJS.ReadableStream => {
             const code = readFileSync(filepath, 'utf8')
             const chunks = getChunksFromCode(code)
 
-            chunks.forEach(({ code }) => {
+            chunks.forEach(({ name, code }) => {
               const snippet = createSnippet({
+                name,
                 path: filepath,
                 code,
                 language,

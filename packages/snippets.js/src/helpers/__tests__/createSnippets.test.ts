@@ -84,14 +84,16 @@ describe('createSnippets', () => {
 
     const javaSnippets = snippetCollection.filter(
       ({ language }) => language === 'java'
-    ).map(({ code }) => ({ code }))
+    ).map(({ name, code }) => ({ name, code }))
 
     expect(javaSnippets).toEqual(expect.arrayContaining(
       [
         {
+          name: 'foo',
           code: 'public class HelloWorld'
         },
         {
+          name: 'bar',
           code: `public static void main(String[] args) {
     System.out.println("Hello, World");
 }`

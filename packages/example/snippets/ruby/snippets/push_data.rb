@@ -17,11 +17,13 @@ index = Algolia::Index.new('demo_ecommerce')
 
 url = 'https://alg.li/doc-ecommerce.json'
 
+# snippets-start:products
 products = JSON.parse(
   Net::HTTP.get_response(
     URI.parse(url).host,
     URI.parse(url).path
   )
 )
+# snippets-end
 
 index.add_objects(products)
