@@ -272,6 +272,7 @@ The `createSnippet` factory lets you generate `Snippet` objects from source inpu
 const { createSnippet } = require("snippets.js");
 
 const phpSnippet = createSnippet({
+  name: "my-snippet",
   language: "php",
   code: '<?php\necho "Hello world!"',
   transform: code => code.replace("<?php", "")
@@ -304,23 +305,29 @@ const createPhpSnippet: SnippetFactory = code =>
   });
 ```
 
+#### `options.name?`<!-- omit in toc -->
+
+Type: `string | undefined`
+
+The name of the snippet.
+
 #### `options.language`<!-- omit in toc -->
 
 Type: `string`
 
-The language of a snippet.
+The language of the snippet.
 
 #### `options.path?`<!-- omit in toc -->
 
 Type: `string | undefined`
 
-The path of a snippet's source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
+The path of the snippet's source file. This is only useful when you're parsing snippets from source files, and can be ommitted if you're building `Snippet` objects by hand.
 
 #### `options.code`<!-- omit in toc -->
 
 Type: `string`
 
-The raw code of a snippet.
+The raw code of the snippet.
 
 #### `options.transform?`<!-- omit in toc -->
 
@@ -342,6 +349,16 @@ const snippet: Snippet = createSnippet({
   code: '<?php\necho "Hello world!"',
   transform: code => code.replace("<?php", "")
 });
+```
+
+#### `name`<!-- omit in toc -->
+
+Type: `string | undefined`
+
+Get the name of a snippet.
+
+```js
+snippet.name; // 'my-snippet'
 ```
 
 #### `language`<!-- omit in toc -->
