@@ -43,6 +43,8 @@ snippets.on("end", () => {
 });
 ```
 
+### Language<!-- omit in toc -->
+
 By default, Snippets.js parses the file extension and sets it as the snippet's language. You can change it in the `languages` setting.
 
 ```js
@@ -57,6 +59,8 @@ const snippets = createSnippets({
 });
 ```
 
+### Transforming the code<!-- omit in toc -->
+
 You can also transform the raw input code. This is useful when you need to remove a piece of code (think `<?php` in PHP snippets, for instance).
 
 ```js
@@ -70,6 +74,8 @@ const snippets = createSnippets({
   ]
 });
 ```
+
+### Chunking a larger snippet<!-- omit in toc -->
 
 If you only need to parse a chunk of a longer snippet, you can add special comments to delimit the part you need.
 
