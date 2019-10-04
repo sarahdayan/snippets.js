@@ -31,7 +31,7 @@ describe('createSnippets', () => {
     const snippets = snippetsFactory()
     const snippetCounter = await createSnippetCounter(snippets)
 
-    expect(snippetCounter).toBe(4)
+    expect(snippetCounter).toBe(6)
   })
   test('ignores snippets from `ignore` option', async () => {
     const snippets = snippetsFactory({
@@ -39,7 +39,7 @@ describe('createSnippets', () => {
     })
     const snippetCounter = await createSnippetCounter(snippets)
 
-    expect(snippetCounter).toBe(3)
+    expect(snippetCounter).toBe(5)
   })
   test('sets the assigned `language` as the snippet language', async () => {
     const snippets = snippetsFactory({
@@ -77,5 +77,26 @@ describe('createSnippets', () => {
     ) || { code: '' }
 
     expect(code).toBe('echo "Hello, world!";')
+  })
+  test('splits multi-chunk snippets before turning them into objects', async () => {
+    const snippets = snippetsFactory()
+    const snippetCollection = await createSnippetCollection(snippets)
+
+    const javaSnippets = snippetCollection.filter(
+      ({ language }) => language === 'java'
+    ).map(({ code }) => ({ code }))
+
+    expect(javaSnippets).toEqual(expect.arrayContaining(
+      [
+        {
+          code: 'public class HelloWorld'
+        },
+        {
+          code: `public static void main(String[] args) {
+    System.out.println("Hello, World");
+}`
+        }
+      ]
+    ))
   })
 })

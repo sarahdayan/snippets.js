@@ -1,8 +1,10 @@
+import { readFileSync } from 'fs'
 import { lstat } from 'fs'
 import gs from 'glob-stream'
 import { Transform } from 'stream'
 import getOptionsFromConfig from './getOptionsFromConfig'
-import createSnippetFromPath from './createSnippetFromPath'
+import createSnippet from './createSnippet'
+import getChunksFromCode from './getChunksFromCode'
 import Config from '../interfaces/Config'
 
 /**
@@ -27,11 +29,19 @@ const createSnippets = (config: Config): NodeJS.ReadableStream => {
             const options = languages && languages[extension] ? languages[extension] : { language: undefined, transform: undefined }
             const { language = extension, transform } = options
 
-            const snippet = createSnippetFromPath(filepath, {
-              language,
-              transform
+            const code = readFileSync(filepath, 'utf8')
+            const chunks = getChunksFromCode(code)
+
+            chunks.forEach(({ code }) => {
+              const snippet = createSnippet({
+                path: filepath,
+                code,
+                language,
+                transform
+              })
+
+              this.push(snippet)
             })
-            this.push(snippet)
           }
 
           callback()

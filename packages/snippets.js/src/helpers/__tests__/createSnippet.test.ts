@@ -51,49 +51,5 @@ echo "Hello, world!";`,
 
       expect(code).toBe('echo "Hello, world!";')
     })
-    test('only retrieves code between slash comments', () => {
-      const { code } = createSnippet({
-        language: 'javascript',
-        path: 'path/to/snippet',
-        code: `index.setSettings({ 'customRanking': ['desc(followers)'] }, (err, content) => {
-  // snippets-start
-  if (err) throw err;
-
-  console.log(content);
-  // snippets-end
-});`
-      })
-
-      expect(code).toBe(`if (err) throw err;
-
-console.log(content);`)
-    })
-    test('only retrieves code between hash comments', () => {
-      const { code } = createSnippet({
-        language: 'python',
-        path: 'path/to/snippet',
-        code: `index.set_settings({'customRanking': ['desc(followers)']}, {
-    # snippets-start
-    'forwardToReplicas': True
-    # snippets-end
-})`
-      })
-
-      expect(code).toBe('\'forwardToReplicas\': True')
-    })
-    test('works with unspaced comments', () => {
-      const { code } = createSnippet({
-        language: 'python',
-        path: 'path/to/snippet',
-        code: `
-index.set_settings({'customRanking': ['desc(followers)']}, {
-    #snippets-start
-    'forwardToReplicas': True
-    #snippets-end
-})`
-      })
-
-      expect(code).toBe('\'forwardToReplicas\': True')
-    })
   })
 })

@@ -75,6 +75,8 @@ If you only need to parse a chunk of a longer snippet, you can add special comme
 
 Comments work with `//` and `#`.
 
+> **Note:** Overlapping and nested comments aren't supported.
+
 ```java
 public class Factorial {
   public static void main(String[] args) {

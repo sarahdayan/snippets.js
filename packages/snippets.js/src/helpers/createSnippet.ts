@@ -1,8 +1,6 @@
-import unindent from 'unindent'
+import normalizeCode from './normalizeCode'
 import Snippet from '../interfaces/Snippet'
 import TransformFunction from '../interfaces/TransformFunction'
-
-const commentRegex = /(?:#|\/\/) ?snippets-start((?:.*|\n)*?)(?:#|\/\/) ?snippets-end/
 
 /**
  * A factory function to create a single Snippet object
@@ -24,8 +22,7 @@ const createSnippet: {
     transform?: TransformFunction
   }): Snippet
 } = ({ language, path, code: rawCode, transform = code => code }) => {
-  const [, code] = rawCode.match(commentRegex) || ['', rawCode]
-  const transformedCode = unindent(transform(code)).trim()
+  const transformedCode = normalizeCode(transform(rawCode))
 
   return {
     language,
