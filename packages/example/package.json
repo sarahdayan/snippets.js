@@ -10,9 +10,9 @@
     "yaml": "yarn lint && node demos/yaml"
   },
   "dependencies": {
-    "camelize": "^1.0.0",
-    "lodash.groupby": "^4.6.0",
+    "camelize": "1.0.0",
+    "lodash.groupby": "4.6.0",
     "snippets.js": "file:../snippets.js",
-    "write-yaml-file": "^3.0.1"
+    "write-yaml-file": "3.0.1"
   }
 }
