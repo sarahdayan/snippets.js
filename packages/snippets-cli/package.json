@@ -1,0 +1,12 @@
+{
+  "name": "snippets-cli",
+  "version": "0.1.0",
+  "description": "⚙️ A CLI to extract code snippets with Snippets.js",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/sarahdayan/snippets.js",
+  "author": "Sarah Dayan",
+  "license": "MIT",
+  "dependencies": {
+    "snippets.js": "file:../snippets.js"
+  }
+}
